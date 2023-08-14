@@ -34,7 +34,7 @@ class Student < ApplicationRecord
   end
   before_update :prevent_age_reduction
   after_update :log_address_change
-  before_destroy :check_for_dependencies
+  before_destroy :check_for_dependencies 
   after_destroy :notify_deletion
   after_commit :notify_commit
 

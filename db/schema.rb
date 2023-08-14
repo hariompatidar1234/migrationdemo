@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_13_152334) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_14_170045) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "auther"
@@ -25,12 +25,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_152334) do
     t.integer "book_id", null: false
   end
 
+  create_table "citizens", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "demos", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date_of_birth"
+  end
+
+  create_table "passports", force: :cascade do |t|
+    t.string "number"
+    t.date "expiration_date"
+    t.integer "citizen_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["citizen_id"], name: "index_passports_on_citizen_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -68,4 +83,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_152334) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "passports", "citizens"
 end
