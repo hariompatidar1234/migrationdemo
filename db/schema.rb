@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_14_170045) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_14_173810) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "auther"
@@ -37,6 +37,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_170045) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date_of_birth"
+  end
+
+  create_table "game_players", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "player_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_players_on_game_id"
+    t.index ["player_id"], name: "index_game_players_on_player_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "passports", force: :cascade do |t|
@@ -67,6 +82,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_170045) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.integer "age"
@@ -83,5 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_170045) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "game_players", "games"
+  add_foreign_key "game_players", "players"
   add_foreign_key "passports", "citizens"
 end
