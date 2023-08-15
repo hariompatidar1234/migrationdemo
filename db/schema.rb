@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_15_032457) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_15_062105) do
   create_table "account_histories", force: :cascade do |t|
     t.integer "account_id"
     t.integer "credit_rating"
@@ -36,6 +36,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_032457) do
     t.datetime "updated_at", null: false
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
+
+  create_table "assemblies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "assemblies_parts", id: false, force: :cascade do |t|
+    t.integer "assembly_id", null: false
+    t.integer "part_id", null: false
   end
 
   create_table "books", force: :cascade do |t|
@@ -85,6 +96,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_032457) do
 
   create_table "games", force: :cascade do |t|
     t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parts", force: :cascade do |t|
+    t.string "part_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
