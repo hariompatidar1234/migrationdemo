@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_14_173810) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_14_184252) do
+  create_table "appointments", force: :cascade do |t|
+    t.integer "doctor_id", null: false
+    t.integer "patient_id", null: false
+    t.date "appointment_date"
+    t.string "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "auther"
@@ -39,6 +50,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_173810) do
     t.date "date_of_birth"
   end
 
+  create_table "doctors", force: :cascade do |t|
+    t.string "name"
+    t.string "mobile_number"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "game_players", force: :cascade do |t|
     t.integer "game_id", null: false
     t.integer "player_id", null: false
@@ -61,6 +80,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_173810) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["citizen_id"], name: "index_passports_on_citizen_id"
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string "name"
+    t.string "mobile_number"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "people", force: :cascade do |t|
@@ -104,6 +131,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_173810) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "appointments", "doctors"
+  add_foreign_key "appointments", "patients"
   add_foreign_key "game_players", "games"
   add_foreign_key "game_players", "players"
   add_foreign_key "passports", "citizens"
