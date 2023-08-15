@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_15_062105) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_15_075418) do
   create_table "account_histories", force: :cascade do |t|
     t.integer "account_id"
     t.integer "credit_rating"
@@ -36,6 +36,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_062105) do
     t.datetime "updated_at", null: false
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "assemblies", force: :cascade do |t|
@@ -69,6 +76,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_062105) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "commentable_type"
+    t.integer "commentable_id"
+  end
+
   create_table "demos", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -85,6 +100,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_062105) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.string "venue"
+    t.string "address"
+    t.date "scheduled_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "game_players", force: :cascade do |t|
     t.integer "game_id", null: false
     t.integer "player_id", null: false
@@ -96,6 +120,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_062105) do
 
   create_table "games", force: :cascade do |t|
     t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.boolean "is_live"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
