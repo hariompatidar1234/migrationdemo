@@ -5,6 +5,16 @@ class Person < ApplicationRecord
     validates :email, confirmation: {case_sensitive: false}
     validates :registration_number, length: {is: 6}
     validates :bio, length: {maximum: 500}
+<<<<<<< HEAD
       validates :points, numericality: true
   validates :games_played, numericality: { only_integer: true }
+=======
+<<<<<<< Updated upstream
+    validates :points, numericality: true
+    validates :games_played, numericality: { only_integer: true }
+=======
+      validates :points, numericality: true
+  validates :games_played, numericality: { only_integer: true }
+>>>>>>> Stashed changes
+>>>>>>> newbranch
 end

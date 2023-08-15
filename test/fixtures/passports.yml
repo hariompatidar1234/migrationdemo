@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  expiration_date: 2023-08-14
+  citizen: one
+
+two:
+  number: MyString
+  expiration_date: 2023-08-14
+  citizen: two
